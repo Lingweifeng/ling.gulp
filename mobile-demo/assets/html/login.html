@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>登录</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1.0, user-scalable=no" name="viewport" />
+    <meta content="" name="description" />
+    <meta name="MobileOptimized" content="320">
+    <!-- build:css ../css/common.min.css -->
+    <link href="../css/common.css" rel="stylesheet" />
+    <!-- endbuild -->
+    <!-- build:css1 ../css/style.min.css -->
+    <link href="../css/style.css" rel="stylesheet" />
+    <!-- endbuild -->
+    <style>
+        body{
+          background-color: #eee;
+        }
+        img{
+          width: 24px!important;
+          height: 24px!important;
+        }
+    </style>
+</head>
+<body class="login">
+    <div class="login-top">
+        <h1><span>wecar</span><br>购车管家</h1>
+        <img src="../images/modal-close.png">
+        <img id="imgClickTest" src="http://www.yiban.cn/public2/questionnaire/images/nmobile/star_on.png" alt="5" title="5">
+    </div>
+    <div class="login-form">
+        <form action="">
+           <div class="form-item form-block">
+               <i class="icon icon-user-gray"></i>
+               <input class="txtinput" type="text" placeholder="请输入帐号">
+           </div>
+           <div class="form-item form-block">
+               <i class="icon icon-lock-gray"></i>
+               <input class="txtinput" type="text" placeholder="请输入密码">
+           </div>
+           <div class="form-item form-block form-tips">
+               <span><i class="icon icon-tips"></i>账号或密码错误，请重新输入</span>
+           </div>
+           <div class="form-item form-btn">
+                <button type="submit" class="btn btn-block btn-orange btn-round btn-shadow mb-1r">立即登录</button>
+            </div>
+        </form>
+    </div>
+    <!-- build:js ../js/lib.min.js -->
+    <script src="../js/lib/zepto.min.js"></script>
+    <script src="../js/lib/fastclick.min.js"></script>
+    <!-- endbuild -->
+    <!-- build:js1 ../js/common.min.js -->
+    <script src="../js/common.js"></script>
+    <!-- endbuild -->
+    <script>
+        $('#imgClickTest').on( 'click', function(){
+            console.log(1234);
+        });
+    </script>
+</body>
+<!-- END BODY -->
+</html>
