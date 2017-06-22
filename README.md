@@ -1,5 +1,20 @@
 gulp静态页面开发工作流
 ---------------------------------------------------------------------------
-1.npm install --save-dev<br>
-2.gulp dev --开发模式：浏览器自动刷新/sass自动编译/sprite雪碧图自动生成<br>
-2.gulp build --打包模式：usemin自动生成并引用压缩文件/图片压缩/小图片base64
+1.下载所以依赖包：
+```
+npm install --save-dev<br>
+```
+2.进入开发模式：
+```
+gulp dev
+```
+默认用浏览器自动刷新<br>
+sass自动编译<br>
+sprite雪碧图自动生成<br>
+3.进入打包模式，所有文件都将打包到dist目录：
+```
+gulp build
+```
+usemin自动生成并引用压缩文件<br>
+图片压缩<br>
+小图片base64
