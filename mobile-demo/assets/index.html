@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>Autoplus mobile </title>
+    <title>gulp 工作流首页demo</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1.0, user-scalable=no" name="viewport" />
     <meta content="" name="description" />
@@ -12,42 +12,28 @@
     <!-- endbuild -->
     <style>
     body{ padding: 1rem }
+    h1,h3{ padding: 0; margin-bottom: 20px; line-height: 150%; }
+    p{ margin-bottom: 20px; line-height: 150%; }
     .list-icon li{ float: left; margin-right: 1rem; margin-bottom: 1rem }
     a{ color: #00a5ed; text-decoration: underline }
+    .sprite-test{ min-height: 800px; background: url(images/sprite.png) no-repeat; background-size: contain; }
     </style>
 </head>
 <body>
-    <h1>Autoplus mobile DEMO</h1>
-    <h3>页面列表</h3>
-    <a class="block padding-10 mb-10" href="html/user-info.html">个人资料</a>
-    <a class="block padding-10 mb-10" href="html/gift-exchange.html">礼品兑换</a>
-    <a class="block padding-10 mb-10" href="html/code-show.html">二维码</a>
-    <a class="block padding-10 mb-10" href="html/activity.html">活动</a>
-    <a class="block padding-10 mb-10" href="html/integral-rainders.html">积分攻略</a>
-    <a class="block padding-10 mb-10" href="html/integral-ranking.html">积分排名</a>
-    <a class="block padding-10 mb-10" href="html/integral-my.html">我的积分</a>
-    <a class="block padding-10 mb-10" href="html/user-command.html">推荐好友购车</a>
-    <a class="block padding-10 mb-10" href="html/user-testdrive.html">我要试驾</a>
-    <a class="block padding-10 mb-10" href="html/number-tostores.html">吸引到店</a>
-    <a class="block padding-10 mb-10" href="html/number-fans.html">吸引粉丝</a>
-    <a class="block padding-10 mb-10" href="html/number-success.html">成功购车</a>
-    <a class="block padding-10 mb-10" href="html/gift-exchanged.html">已兑换礼品</a>
-    <a class="block padding-10 mb-10" href="html/activity-new.html">最新活动</a>
-    <a class="block padding-10 mb-10" href="html/news.html">新闻列表</a>
-    <a class="block padding-10 mb-10" href="html/login.html">登录</a>
-    <a class="block padding-10 mb-10" href="html/search.html">搜索</a>
-    <a class="block padding-10 mb-10" href="html/remarks.html">备注</a>
-    <a class="block padding-10 mb-10" href="html/user-manage.html">用户管理</a>
-    <a class="block padding-10 mb-10" href="html/timeaxis.html">时间轴</a>
-    <a class="block padding-10 mb-10" href="html/timeaxis-history.html">时间轴-历史成交</a>
-    <a class="block padding-10 mb-10" href="html/timeaxis-confirm.html">时间轴-确认</a>
-    <a class="block padding-10 mb-10" href="html/timeaxis-info.html">时间轴-用户详情</a>
+    <h1>gulp 工作流首页demo</h1>
+    <h3>1.页面列表</h3>
+    <p><a href="html/login.html">html文件夹里的测试页面(login.html)</a></p>
+    <h3>2.测试base64：</h3>
+    <p>请在对应样式表里查看background属性，仅限于生产环境</p>
     <div class="test-base64">
-        <div>4.23kb:</div>
-        <div>1.95kb:</div>
-        <div>946b:</div>
-        <div>296b:</div>
+        <div>4.23kb(未生成base64):</div>
+        <div>1.95kb(未生成base64):</div>
+        <div>946b(生成base64):</div>
+        <div>296b(生成base64):</div>
     </div>
+    <h3>3.测试csssprite：</h3>
+    <p>请向images/sprite文件夹添加或删除一个icon,触发gulp sprite任务，自动更新sprite.png/sprite.scss</p>
+    <div class="sprite-test"></div>
     <div class="icon-arrow-right"></div>
     <!-- build:js js/lib.min.js -->
     <script src="js/lib/zepto.min.js"></script>

@@ -1,20 +1,20 @@
-gulp静态页面开发工作流
+gulp工作流
 ---------------------------------------------------------------------------
-1.下载所以依赖包：
+一.下载所有依赖包：
 ```
-npm install --save-dev<br>
+npm install --save-dev
 ```
-2.进入开发模式：
+二.进入开发模式：
 ```
 gulp dev
 ```
-默认用浏览器自动刷新<br>
-sass自动编译<br>
-sprite雪碧图自动生成<br>
-3.进入打包模式，所有文件都将打包到dist目录：
+1.监测html/js/css文件，浏览器自动刷新：使用browserSync插件<br>
+2.sass自动编译<br>
+3.sprite雪碧图自动生成：请向images/sprite文件夹添加或删除一个icon，触发gulp sprite任务，自动更新sprite.png/sprite.scss<br>
+三.进入打包模式，所有文件都将打包到dist目录：
 ```
 gulp build
 ```
-usemin自动生成并引用压缩文件<br>
-图片压缩<br>
-小图片base64
+1.usemin自动生成并引用压缩文件(js/css生成带md5后缀的.min文件)<br>
+2.images文件夹图片压缩<br>
+3.小图片使用base64(详见首页示例)
