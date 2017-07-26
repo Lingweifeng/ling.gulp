@@ -2,8 +2,8 @@
  * gulp工作流
  *TODO: 1)解决sass,cssmin全部文件编译压缩的问题2)watch gulpfilejs自动重启;
  */
-var projectName = 'mobile-demo/',
-    publicPath = 'dist/',
+var projectName = '', // projectName = '',
+    publicPath = '',  // publicPath = '',
     gulp = require( 'gulp' ),
     watch = require( 'gulp-watch' ),
     sass = require( 'gulp-sass' ),
@@ -80,7 +80,7 @@ gulp.task( 'imagemin', [ 'clean' ], function() {
 
 // 清除dist
 gulp.task( 'clean', function () {
-    return gulp.src(projectName + 'dist/', {read: false})
+   return gulp.src([ projectName + 'dist/', projectName + 'css/', projectName + 'js/', projectName + 'images/', projectName + 'plugins/', projectName + '*.html' ], {read: false})
         .pipe(clean());
 });
 
@@ -94,7 +94,7 @@ gulp.task( 'copy', [ 'clean' ], function () {
 gulp.task('usemin', ['copy','imagemin'], function() {
     return gulp.src(projectName + 'assets/**/*.html')
     .pipe(usemin({
-        html: [ 
+        html: [
             function () {
                 return htmlmin({ 
                     removeComments: true,  //清除HTML注释
@@ -140,5 +140,5 @@ gulp.task('build', ['base64'], function() {
         },
         startPath: projectName + publicPath + "index.html"
     });
-    gulp.watch( [projectName + publicPath + "**/*.html", projectName + publicPath + "css/**/*.css", projectName + publicPath + "js/**/*.js"], reload ); // 监听html/css/js
+    //gulp.watch( [projectName + publicPath + "**/*.html", projectName + publicPath + "css/**/*.css", projectName + publicPath + "js/**/*.js"], reload ); // 监听html/css/js
 });
