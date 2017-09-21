@@ -2,8 +2,8 @@
  * gulp工作流
  *TODO: 1)解决sass,cssmin全部文件编译压缩的问题2)watch gulpfilejs自动重启;
  */
-var projectName = '', // projectName = '',
-    publicPath = '',  // publicPath = '',
+var projectName = '2017yingxin_offline/', // projectName = '',
+    publicPath = 'public/',  // publicPath = '',
     gulp = require( 'gulp' ),
     watch = require( 'gulp-watch' ),
     sass = require( 'gulp-sass' ),
