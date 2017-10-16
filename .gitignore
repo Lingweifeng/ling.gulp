@@ -1,7 +1,4 @@
 .*
 !.gitignore
 /node_modules
-/quwei
-/tool-js
-/vue-study
-/2017yingxin_online
+/dist

@@ -2,8 +2,8 @@
  * gulp工作流
  *TODO: 1)解决sass,cssmin全部文件编译压缩的问题2)watch gulpfilejs自动重启;
  */
-var projectName = '2017yingxin_offline/', // projectName = '',
-    publicPath = 'public/',  // publicPath = '',
+var projectName = '', // projectName = '',
+    publicPath = 'dist/',  // publicPath = '',
     gulp = require( 'gulp' ),
     watch = require( 'gulp-watch' ),
     sass = require( 'gulp-sass' ),
@@ -16,7 +16,7 @@ var projectName = '2017yingxin_offline/', // projectName = '',
     rev = require('gulp-rev'),
     uglify = require('gulp-uglify'),
     base64 = require('gulp-base64'),
-    spritesmith = require("gulp-spritesmith"),
+    spritesmith = require("gulp-spritesmith"),地
     gulpif = require("gulp-if"),
     browserSync = require( 'browser-sync' ).create(),
     reload = browserSync.reload;
@@ -26,28 +26,28 @@ gulp.task('dev', ['sprite'], function() {
         server: {
             baseDir: "./",
         },
-        startPath: projectName + "assets/index.html"
+        startPath: projectName + "src/index.html"
     });
     //gulp.watch( "gulpfile.js", ['dev'] ); // 监听gulpfile.js
-    gulp.watch( projectName + "assets/images/sprite/*.png", ['sprite'] ); // 监听sprite,自动生成雪碧图
-    gulp.watch( projectName + "assets/sass/*.scss", ['sass'] ); // 监听SASS
-    gulp.watch( [projectName + "assets/**/*.html", projectName + "assets/html/**/*.html", projectName + "assets/css/**/*.css", projectName + "assets/js/**/*.js", projectName + "assets/images/**/*.(png|jpg|jpeg|gif)"],  reload ); // 监听html/css/js
+    gulp.watch( projectName + "src/images/sprite/*.png", ['sprite'] ); // 监听sprite,自动生成雪碧图
+    gulp.watch( projectName + "src/sass/*.scss", ['sass'] ); // 监听SASS
+    gulp.watch( [projectName + "src/**/*.html", projectName + "src/html/**/*.html", projectName + "src/css/**/*.css", projectName + "src/js/**/*.js", projectName + "src/images/**/*.(png|jpg|jpeg|gif)"],  reload ); // 监听html/css/js
 });
 
 // scss编译后的css将注入到浏览器里实现更新
 gulp.task( 'sass', function() {
-    return gulp.src([ projectName + "assets/sass/*.scss", '!'+projectName+"assets/sass/mixin.scss", '!'+projectName+"assets/sass/sprite.scss" ])
+    return gulp.src([ projectName + "src/sass/*.scss", '!'+projectName+"src/sass/mixin.scss", '!'+projectName+"src/sass/sprite.scss" ])
         .pipe( sass({ outputStyle: 'expanded' }).on( 'error', function( err ){ console.log( err ); this.emit('end'); } ) ) // nested/expanded/compact/compressed
-        .pipe( gulp.dest(projectName + "assets/css") )
+        .pipe( gulp.dest(projectName + "src/css") )
         //.pipe( reload({stream: true}) );
 });
 gulp.task('sass:watch', function () {
-  gulp.watch( projectName + "assets/sass/*.scss", ['sass']);
+  gulp.watch( projectName + "src/sass/*.scss", ['sass']);
 });
 
 // css sprite
 gulp.task('sprite', function () {
-    return  gulp.src(projectName + 'assets/images/sprite/*.png')
+    return  gulp.src(projectName + 'src/images/sprite/*.png')
         .pipe(spritesmith({
             imgName: 'sprite.png',
             styleName: 'sprite.scss',
@@ -58,22 +58,22 @@ gulp.task('sprite', function () {
               sprite.name = 'sprite' + sprite.name;
             }
         }))
-        .pipe(gulpif('*.png', gulp.dest(projectName + 'assets/images/')))
-        .pipe(gulpif('*.scss', gulp.dest(projectName + 'assets/sass/')));
+        .pipe(gulpif('*.png', gulp.dest(projectName + 'src/images/')))
+        .pipe(gulpif('*.scss', gulp.dest(projectName + 'src/sass/')));
 });
 
 // css压缩
 gulp.task( 'cssmin', ['sass'], function() {
-    return gulp.src( [projectName + "assets/css/*.css", "!"+projectName + "assets/css/*.min.css"] )
+    return gulp.src( [projectName + "src/css/*.css", "!"+projectName + "src/css/*.min.css"] )
         .pipe(cssmin()) // nested/expanded/compact/compressed
         .pipe(rename({suffix: '.min'}))
-        .pipe(gulp.dest(projectName + 'assets/css'))
+        .pipe(gulp.dest(projectName + 'src/css'))
         //.pipe(reload({stream: true}));
 });
 
 // 图片压缩
 gulp.task( 'imagemin', [ 'clean' ], function() {
-    return gulp.src(projectName + "assets/images/**/*")
+    return gulp.src(projectName + "src/images/**/*")
         .pipe(imagemin())
         .pipe(gulp.dest(projectName + publicPath + 'images/'))
 });
@@ -86,13 +86,13 @@ gulp.task( 'clean', function () {
 
 // copy
 gulp.task( 'copy', [ 'clean' ], function () {
-    return gulp.src([ projectName + 'assets/plugins/**/*' ])
+    return gulp.src([ projectName + 'src/plugins/**/*' ])
         .pipe(gulp.dest(projectName + publicPath + 'plugins/'));
 });
 
 // 生产环境usemin
 gulp.task('usemin', ['copy','imagemin'], function() {
-    return gulp.src(projectName + 'assets/**/*.html')
+    return gulp.src(projectName + 'src/**/*.html')
     .pipe(usemin({
         html: [
             function () {
@@ -136,9 +136,9 @@ gulp.task('base64', ['usemin'], function () {
 gulp.task('build', ['base64'], function() {
     browserSync.init({
         server: {
-            baseDir: "./",
+            baseDir: "./"+projectName + publicPath+"/",
         },
-        startPath: projectName + publicPath + "index.html"
+        startPath: "index.html"
     });
     //gulp.watch( [projectName + publicPath + "**/*.html", projectName + publicPath + "css/**/*.css", projectName + publicPath + "js/**/*.js"], reload ); // 监听html/css/js
 });
