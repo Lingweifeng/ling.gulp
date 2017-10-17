@@ -124,7 +124,7 @@ gulp.task('base64', ['usemin'], function () {
 gulp.task('dev', ['sprite','sass'], function() {
     browserSync.init({
         server: {
-            baseDir: "./" + projectName + publicPath + "src",
+            baseDir: "./" + projectName + "src",
         },
         index: 'index.html'
     });
