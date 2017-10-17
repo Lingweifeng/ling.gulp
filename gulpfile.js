@@ -21,19 +21,6 @@ var projectName = '', // projectName = '',
     browserSync = require( 'browser-sync' ).create(),
     reload = browserSync.reload;
 
-gulp.task('dev', ['sprite'], function() {
-    browserSync.init({
-        server: {
-            baseDir: "./",
-        },
-        startPath: projectName + "src/index.html"
-    });
-    //gulp.watch( "gulpfile.js", ['dev'] ); // 监听gulpfile.js
-    gulp.watch( projectName + "src/images/sprite/*.png", ['sprite'] ); // 监听sprite,自动生成雪碧图
-    gulp.watch( projectName + "src/sass/*.scss", ['sass'] ); // 监听SASS
-    gulp.watch( [projectName + "src/**/*.html", projectName + "src/html/**/*.html", projectName + "src/css/**/*.css", projectName + "src/js/**/*.js", projectName + "src/images/**/*.(png|jpg|jpeg|gif)"],  reload ); // 监听html/css/js
-});
-
 // scss编译后的css将注入到浏览器里实现更新
 gulp.task( 'sass', function() {
     return gulp.src([ projectName + "src/sass/*.scss", '!'+projectName+"src/sass/mixin.scss", '!'+projectName+"src/sass/sprite.scss" ])
@@ -80,7 +67,7 @@ gulp.task( 'imagemin', [ 'clean' ], function() {
 
 // 清除dist
 gulp.task( 'clean', function () {
-   return gulp.src([ projectName + 'dist/', projectName + 'css/', projectName + 'js/', projectName + 'images/', projectName + 'plugins/', projectName + '*.html' ], {read: false})
+   return gulp.src([ projectName + 'dist/' ], {read: false})
         .pipe(clean());
 });
 
@@ -133,6 +120,21 @@ gulp.task('base64', ['usemin'], function () {
         .pipe(gulp.dest(projectName + publicPath + "css"));
 });
 
+// 正常开发环境
+gulp.task('dev', ['sprite','sass'], function() {
+    browserSync.init({
+        server: {
+            baseDir: "./" + projectName + publicPath + "src",
+        },
+        index: 'index.html'
+    });
+    //gulp.watch( "gulpfile.js", ['dev'] ); // 监听gulpfile.js
+    gulp.watch( projectName + "src/images/sprite/*.png", ['sprite'] ); // 监听sprite,自动生成雪碧图
+    gulp.watch( projectName + "src/sass/*.scss", ['sass'] ); // 监听SASS
+    gulp.watch( [projectName + "src/**/*.html", projectName + "src/html/**/*.html", projectName + "src/css/**/*.css", projectName + "src/js/**/*.js", projectName + "src/images/**/*.(png|jpg|jpeg|gif)"],  reload ); // 监听html/css/js
+});
+
+// 打包
 gulp.task('build', ['base64'], function() {
     browserSync.init({
         server: {
