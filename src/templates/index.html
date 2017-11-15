@@ -56,17 +56,15 @@
     </style>
 </head>
 <body>
-    <header>
-    <h1>我是公用头部：1.页面传进来的值; 2.@@news</h1>
-</header>
+    @@include( 'include/header.html', {
+        "title": "页面传进来的值"
+    })
     <div class="wrapper">
 
-        <div class="menu">
-	<ul class="menu-list">
-		<li class="active"><a href="#">home</a></li>
-		<li class=""><a href="#">news</a></li>
-	</ul>
-</div>
+        @@include( 'include/sidebar.html', {
+            "home": "active",
+            "news": ""
+        })
         <div class="main">
             <h1>gulp 工作流首页demo</h1>
             <h3>1.页面列表</h3>
@@ -75,7 +73,7 @@
             <p>请在对应样式表里查看background属性，仅限于生产环境</p>
             <div class="test-base64">
                 <div>4.23kb(未生成base64):</div>
-                <div>1.95kb(未生成base64):</div>
+                <div>1.95kb(生成base64):</div>
                 <div>946b(生成base64):</div>
                 <div>296b(生成base64):</div>
             </div>
@@ -86,9 +84,10 @@
         </div>
     </div>
 
-    <footer>
-    <h3>页面公用底部</h3>
-</footer>
+    @@include( 'include/footer.html', {
+        "home": "页面传进来的home值",
+        "news": "页面传进来的news值"
+    })
     <!-- build:js js/lib.min.js -->
     <script src="js/lib/zepto.min.js"></script>
     <script src="js/lib/fastclick.min.js"></script>
